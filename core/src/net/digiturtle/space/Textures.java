@@ -16,10 +16,15 @@ public class Textures {
 	public static TextureRegion BASIC_SHIELDS, RUGGED_SHIELDS, MARTIAN_SHIELDS;
 	public static Texture ASTEROIDS;
 	public static TextureRegion ASTEROID1, ASTEROID2, ASTEROID3, ASTEROID4;
+	public static TextureRegion SHIP_DAMAGE1, SHIP_DAMAGE2, SHIP_DAMAGE3, SHIP_DAMAGE4;
 	
 	public static Skin SKIN;
 	
 	public static void create () {
+		SHIP_DAMAGE1 = new TextureRegion(new Texture("ShipDamage1.png"));
+		SHIP_DAMAGE2 = new TextureRegion(new Texture("ShipDamage2.png"));
+		SHIP_DAMAGE3 = new TextureRegion(new Texture("ShipDamage3.png"));
+		SHIP_DAMAGE4 = new TextureRegion(new Texture("ShipDamage4.png"));
 		BASIC_PHASERS = new TextureRegion(new Texture("BasicPhasers.png"));
 		ENERGY_PHASERS = new TextureRegion(new Texture("EnergyPhasers.png"));
 		RED_MATTER_PHASERS = new TextureRegion(new Texture("RedMatterPhasers.png"));
@@ -39,6 +44,10 @@ public class Textures {
 	}
 	
 	public static void dispose () {
+		SHIP_DAMAGE1.getTexture().dispose();
+		SHIP_DAMAGE2.getTexture().dispose();
+		SHIP_DAMAGE3.getTexture().dispose();
+		SHIP_DAMAGE4.getTexture().dispose();
 		BASIC_PHASERS.getTexture().dispose();
 		ENERGY_PHASERS.getTexture().dispose();
 		RED_MATTER_PHASERS.getTexture().dispose();
