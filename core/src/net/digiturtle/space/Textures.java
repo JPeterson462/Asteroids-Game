@@ -1,7 +1,12 @@
 package net.digiturtle.space;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Pixmap;
+import com.badlogic.gdx.graphics.Pixmap.Format;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
 public class Textures {
 	
@@ -11,6 +16,8 @@ public class Textures {
 	public static TextureRegion BASIC_SHIELDS, RUGGED_SHIELDS, MARTIAN_SHIELDS;
 	public static Texture ASTEROIDS;
 	public static TextureRegion ASTEROID1, ASTEROID2, ASTEROID3, ASTEROID4;
+	
+	public static Skin SKIN;
 	
 	public static void create () {
 		BASIC_PHASERS = new TextureRegion(new Texture("BasicPhasers.png"));
@@ -28,6 +35,7 @@ public class Textures {
 		ASTEROID2 = new TextureRegion(ASTEROIDS, 128+96, 0, 64,46);
 		ASTEROID3 = new TextureRegion(ASTEROIDS, 128, 0, 96,96);
 		ASTEROID4 = new TextureRegion(ASTEROIDS, 0, 0, 128,128);
+		SKIN = new Skin(Gdx.files.internal("uiskin.json"));
 	}
 	
 	public static void dispose () {
@@ -42,6 +50,13 @@ public class Textures {
 		RUGGED_SHIELDS.getTexture().dispose();
 		MARTIAN_SHIELDS.getTexture().dispose();
 		ASTEROIDS.dispose();
+	}
+	
+	public static Texture getColoredDrawable(int width, int height, Color color) {
+		Pixmap pixmap = new Pixmap(width, height, Format.RGBA8888);
+		pixmap.setColor(color);
+		pixmap.fill();
+		return new Texture(pixmap);
 	}
 
 }

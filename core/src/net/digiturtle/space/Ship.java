@@ -19,7 +19,13 @@ public class Ship {
 	}
 	
 	public enum Shields {
-		Basic, Rugged, Martian
+		Basic(1.0f), Rugged(0.7f), Martian (0.35f);
+		
+		public final float damageFactor;
+		
+		Shields (float damageFactor) {
+			this.damageFactor = damageFactor;
+		}
 	}
 	
 	public enum Phasers {
@@ -33,6 +39,9 @@ public class Ship {
 	public Shields shields = Shields.Basic;
 	
 	public Phasers phasers = Phasers.Basic;
+	
+	public final int maxHealth = 100;
+	public int health = maxHealth;
 	
 	public Vector2 position;
 	private Vector2 velocity = new Vector2();
