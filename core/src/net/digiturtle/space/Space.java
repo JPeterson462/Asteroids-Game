@@ -65,21 +65,23 @@ public class Space {
 						random.nextInt(3) == 0 ? 2 : 1));
 			}
 		}
-		// Generate asteroids
 		asteroids = new ArrayList<>();
-		int spacing = (int) (96 / asteroidDensity);
-		System.out.println("Spacing: " + spacing);
-		for (int y = spacing; y < height; y += spacing) {
-			int level = mapAsteroidLevel(random.nextFloat());
-			boolean added = false;
-			if (random.nextBoolean() || random.nextBoolean()) {
-				asteroids.add(new Asteroid(new Vector2(width * (.25f + random.nextFloat() * .15f), y), 
-						level));
-				added = true;
-			}
-			if (!added | random.nextBoolean()) {
-				asteroids.add(new Asteroid(new Vector2(width * (.75f - random.nextFloat() * .15f), y),
-						added ? mapAsteroidLevel(random.nextFloat()) : (random.nextFloat() > .7f ? 4 : 3)));
+		if (asteroidDensity > 0) {
+			// Generate asteroids
+			int spacing = (int) (96 / asteroidDensity);
+			System.out.println("Spacing: " + spacing);
+			for (int y = spacing; y < height; y += spacing) {
+				int level = mapAsteroidLevel(random.nextFloat());
+				boolean added = false;
+				if (random.nextBoolean() || random.nextBoolean()) {
+					asteroids.add(new Asteroid(new Vector2(width * (.25f + random.nextFloat() * .15f), y), 
+							level));
+					added = true;
+				}
+				if (!added | random.nextBoolean()) {
+					asteroids.add(new Asteroid(new Vector2(width * (.75f - random.nextFloat() * .15f), y),
+							added ? mapAsteroidLevel(random.nextFloat()) : (random.nextFloat() > .7f ? 4 : 3)));
+				}
 			}
 		}
 	}

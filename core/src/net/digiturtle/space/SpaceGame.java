@@ -28,7 +28,7 @@ public class SpaceGame extends ApplicationAdapter {
 	
 	@Override
 	public void create () {
-		ship = new Ship();ship.phasers = Ship.Phasers.Basic;ship.thrusters = Ship.Thrusters.Mega;
+		ship = new Ship();
 		camera = new OrthographicCamera();
 		float widthScale = (828f/2) / (float)Gdx.graphics.getWidth();
 		int viewportHeight = (int) (widthScale * (float)Gdx.graphics.getHeight());
@@ -58,6 +58,7 @@ public class SpaceGame extends ApplicationAdapter {
 		healthBar.getStyle().knob = new TextureRegionDrawable(new TextureRegion(Textures.getColoredDrawable(0, (int) healthBar.getHeight(), Color.RED)));
 		healthBar.getStyle().knobBefore = new TextureRegionDrawable(new TextureRegion(Textures.getColoredDrawable((int) healthBar.getWidth(), (int) healthBar.getHeight(), Color.RED)));
 		stage.addActor(healthBar);
+		Screen.create(camera);
 	}
 
 	@Override
@@ -65,7 +66,7 @@ public class SpaceGame extends ApplicationAdapter {
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		float dt = Gdx.graphics.getDeltaTime();
-		ship.update(dt);
+	/*	ship.update(dt);
 		shipRenderer.act(dt);
 		camera.position.set(ship.position.x, ship.position.y + camera.viewportHeight/4, 0);
 		camera.update();
@@ -77,7 +78,8 @@ public class SpaceGame extends ApplicationAdapter {
 		stage.act(dt);
 		stage.draw();
 		space.processCollisionsAndUpdate(ship, 300, 240, dt);
-		healthBar.setValue(ship.health);
+		healthBar.setValue(ship.health);	*/
+		Screen.render(spaceRenderer, dt);
 	}
 	
 	@Override
