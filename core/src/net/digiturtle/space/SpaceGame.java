@@ -26,6 +26,8 @@ public class SpaceGame extends ApplicationAdapter {
 	ProgressBar healthBar;
 	Stage stage;
 	
+	public static final long SEED = 202011112020L;
+	
 	@Override
 	public void create () {
 		ship = new Ship();
@@ -58,7 +60,7 @@ public class SpaceGame extends ApplicationAdapter {
 		healthBar.getStyle().knob = new TextureRegionDrawable(new TextureRegion(Textures.getColoredDrawable(0, (int) healthBar.getHeight(), Color.RED)));
 		healthBar.getStyle().knobBefore = new TextureRegionDrawable(new TextureRegion(Textures.getColoredDrawable((int) healthBar.getWidth(), (int) healthBar.getHeight(), Color.RED)));
 		stage.addActor(healthBar);
-		Screen.create(camera);
+		Screen.create(camera, ship);
 	}
 
 	@Override

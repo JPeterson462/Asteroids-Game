@@ -70,7 +70,7 @@ public class Space {
 			// Generate asteroids
 			int spacing = (int) (96 / asteroidDensity);
 			System.out.println("Spacing: " + spacing);
-			for (int y = spacing; y < height; y += spacing) {
+			for (int y = spacing + 2 * width; y < height; y += spacing) {
 				int level = mapAsteroidLevel(random.nextFloat());
 				boolean added = false;
 				if (random.nextBoolean() || random.nextBoolean()) {

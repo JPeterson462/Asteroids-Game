@@ -2,9 +2,11 @@ package net.digiturtle.space;
 
 import java.util.Random;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 
-public class Screen {
+public abstract class Screen {
 
 	public static final int 
 		SPLASH_SCREEN = 0,
@@ -15,17 +17,18 @@ public class Screen {
 				FREE_PLAY_SETUP_SCREEN = 5,
 					FREE_PLAY_SCREEN = 6,
 						FREE_PLAY_GAME_OVER_SCREEN = 7,
-				SHOP_SCREEN = 8
+				SHOP_SCREEN = 8,
+				SETTINGS_SCREEN = 9
 		;
 	
 	public static Screen[] SCREENS;
 	public static int current = SPLASH_SCREEN;
 	private static Space noAsteroid, asteroid;
-	private static OrthographicCamera camera;
+	public static OrthographicCamera camera;
 	private static float t;
 	private static Random random;
 	
-	public static void create (OrthographicCamera camera) {
+	public static void create (OrthographicCamera camera, Ship ship) {
 		random = new Random();
 		Screen.camera = camera;
 		noAsteroid = new Space((a) -> {});
@@ -33,16 +36,32 @@ public class Screen {
 		asteroid = new Space((a) -> {});
 		asteroid.generate((int) camera.viewportWidth, (int) camera.viewportHeight * 5, random, 0.3f);
 		SCREENS = new Screen[] {
-				null,
-					null,
-						null,
-							null,
-								null,
-						null,
-							null,
-								null,
-						null
+				new SplashScreen(),
+					new MenuScreen(),
+						new LevelSelectScreen(),
+							new PlayScreen(ship),
+								new GameOverScreen(),
+						new FreePlaySetupScreen(),
+							new PlayScreen(ship),
+								new GameOverScreen(),
+						new ShopScreen(),
+						new SettingsScreen()
 			};
+	}
+	
+	public abstract Stage getStage ();
+	
+	public abstract void draw (float dt);
+	
+	public boolean showAsteroids = false, passInput = false;
+	
+	public static void to (int index) {
+		current = index;
+		Gdx.input.setInputProcessor(SCREENS[current].getStage());//TODO multiplex input for play screens
+	}
+	
+	public static Screen now () {
+		return SCREENS[current];
 	}
 	
 	public static void render (SpaceRenderer spaceRenderer, float dt) {
@@ -52,7 +71,11 @@ public class Screen {
 		}
 		camera.position.set(camera.viewportWidth/2, t + camera.viewportHeight/2, 0);
 		camera.update();
-		spaceRenderer.draw(asteroid, camera);
+		Screen screen = SCREENS[current];
+		if (!(screen instanceof PlayScreen)) spaceRenderer.draw(screen.showAsteroids ? asteroid : noAsteroid, camera);
+		screen.draw(dt);
+		screen.getStage().act(dt);
+		screen.getStage().draw();
 	}
 	
 }
