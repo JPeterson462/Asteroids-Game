@@ -17,6 +17,8 @@ public class Textures {
 	public static Texture ASTEROIDS;
 	public static TextureRegion ASTEROID1, ASTEROID2, ASTEROID3, ASTEROID4;
 	public static TextureRegion SHIP_DAMAGE1, SHIP_DAMAGE2, SHIP_DAMAGE3, SHIP_DAMAGE4;
+	public static Texture FUEL;
+	public static TextureRegion[] GASOLINE, JET_FUEL, PLASMA;
 	
 	public static Skin SKIN;
 	
@@ -41,6 +43,15 @@ public class Textures {
 		ASTEROID3 = new TextureRegion(ASTEROIDS, 128, 0, 96,96);
 		ASTEROID4 = new TextureRegion(ASTEROIDS, 0, 0, 128,128);
 		SKIN = new Skin(Gdx.files.internal("uiskin.json"));
+		FUEL = new Texture("SpaceFuel.png");
+		GASOLINE = new TextureRegion[5];
+		JET_FUEL = new TextureRegion[5];
+		PLASMA = new TextureRegion[5];
+		for (int i = 0; i < 5; i++) {
+			GASOLINE[i] = new TextureRegion(FUEL, i * 240, 0, 240, 100);
+			JET_FUEL[i] = new TextureRegion(FUEL, i * 240, 100, 240, 100);
+			PLASMA[i] = new TextureRegion(FUEL, i * 240, 200, 240, 100);
+		}
 	}
 	
 	public static void dispose () {

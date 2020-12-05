@@ -1,9 +1,15 @@
 package net.digiturtle.space;
 
+import java.util.Random;
+
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 public class ShipRenderer {
+	
+	private float t;
+	private int fuelSlide = 0;
+	private Random random = new Random();
 	
 	private TextureRegion[] getSprites (Ship ship) {
 		TextureRegion[] sprites = new TextureRegion[4];
@@ -54,9 +60,32 @@ public class ShipRenderer {
 		 return Textures.SHIP_DAMAGE4;
 	}
 	
+	public void act (float dt) {
+		float slideTime = .055f;
+		t += dt;
+		if (t > slideTime) {
+			t -= slideTime;
+			fuelSlide = random.nextInt(5);
+		}
+	}
+	
+	private TextureRegion getFuelFrame (Ship ship) {
+		switch (ship.thrusters) {
+		case Basic:
+			return Textures.GASOLINE[fuelSlide];
+		case Mega:
+			return Textures.JET_FUEL[fuelSlide];
+		case Warp:
+			return Textures.PLASMA[fuelSlide];
+		}
+		return null;
+	}
+	
 	public void draw (Batch batch, Ship ship, float x, float y) {
+		TextureRegion fuelFrame = getFuelFrame(ship);
 		TextureRegion[] sprites = getSprites(ship);
 		TextureRegion damage = getShipDamage(ship);
+		batch.draw(fuelFrame, x - fuelFrame.getRegionWidth()/2, y - sprites[0].getRegionHeight()/2 - 35);
 		batch.draw(sprites[0], 
 				x - sprites[0].getRegionWidth()/2,
 				y - sprites[0].getRegionHeight()/2);

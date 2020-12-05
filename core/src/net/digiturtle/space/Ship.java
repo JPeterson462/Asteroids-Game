@@ -14,9 +14,9 @@ public class Ship {
 		}
 	}
 	
-	public enum Fuel {
-		Gasoline, Plasma, DarkMatter
-	}
+/*	public enum Fuel {
+		Gasoline, JetFuel, Plasma
+	} */
 	
 	public enum Shields {
 		Basic(1.0f), Rugged(0.7f), Martian (0.35f);
@@ -34,7 +34,7 @@ public class Ship {
 	
 	public Thrusters thrusters = Thrusters.Basic;
 	
-	public Fuel fuel = Fuel.Gasoline;
+//	public Fuel fuel = Fuel.Gasoline;
 	
 	public Shields shields = Shields.Basic;
 	

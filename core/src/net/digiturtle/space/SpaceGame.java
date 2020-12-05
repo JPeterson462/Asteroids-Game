@@ -28,7 +28,7 @@ public class SpaceGame extends ApplicationAdapter {
 	
 	@Override
 	public void create () {
-		ship = new Ship();ship.phasers = Ship.Phasers.Energy;
+		ship = new Ship();ship.phasers = Ship.Phasers.Energy;ship.thrusters = Ship.Thrusters.Mega;
 		camera = new OrthographicCamera();
 		float widthScale = (828f/2) / (float)Gdx.graphics.getWidth();
 		int viewportHeight = (int) (widthScale * (float)Gdx.graphics.getHeight());
@@ -66,6 +66,7 @@ public class SpaceGame extends ApplicationAdapter {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		float dt = Gdx.graphics.getDeltaTime();
 		ship.update(dt);
+		shipRenderer.act(dt);
 		camera.position.set(ship.position.x, ship.position.y + camera.viewportHeight/4, 0);
 		camera.update();
 		spaceRenderer.draw(space, camera);
