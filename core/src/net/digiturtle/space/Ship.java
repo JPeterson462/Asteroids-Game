@@ -29,7 +29,14 @@ public class Ship {
 	}
 	
 	public enum Phasers {
-		Basic, Energy, RedMatter
+		Basic(1, .1f), Energy(1.3f, .25f), RedMatter(1.7f, .4f);
+		
+		public final float shootFactor, chance2Levels;
+		
+		Phasers (float shootFactor, float chance2Levels) {
+			this.shootFactor = shootFactor;
+			this.chance2Levels = chance2Levels;
+		}
 	}
 	
 	public Thrusters thrusters = Thrusters.Basic;

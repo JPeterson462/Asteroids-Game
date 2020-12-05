@@ -1,5 +1,6 @@
 package net.digiturtle.space;
 
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 
 public class KeyboardShipController extends ShipController implements InputProcessor {
@@ -11,6 +12,9 @@ public class KeyboardShipController extends ShipController implements InputProce
 
 	@Override
 	public boolean keyUp(int keycode) {
+		if (keycode == Input.Keys.SPACE) {
+			this.shoot();
+		}
 		return false;
 	}
 
@@ -26,6 +30,7 @@ public class KeyboardShipController extends ShipController implements InputProce
 
 	@Override
 	public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+		this.shoot();
 		return false;
 	}
 

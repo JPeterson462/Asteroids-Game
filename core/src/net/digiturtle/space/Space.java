@@ -11,7 +11,7 @@ public class Space {
 	
 	public ArrayList<Vector3> stars;
 	public ArrayList<Asteroid> asteroids;
-	public int width, height;
+	public int width, height, shipHeight;
 	public Consumer<Asteroid> collider;
 	
 	public Space (Consumer<Asteroid> collider) {
@@ -26,6 +26,7 @@ public class Space {
 	}
 	
 	public void processCollisionsAndUpdate (Ship ship, int shipHeight, int shipWidth, float dt) {
+		this.shipHeight = shipHeight;
 		for (int i = asteroids.size() - 1; i >= 0; i--) {
 			Asteroid asteroid = asteroids.get(i);
 			asteroid.update(dt);
