@@ -3,6 +3,8 @@ package net.digiturtle.space;
 import java.util.Random;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputMultiplexer;
+import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 
@@ -36,16 +38,16 @@ public abstract class Screen {
 		asteroid = new Space((a) -> {});
 		asteroid.generate((int) camera.viewportWidth, (int) camera.viewportHeight * 5, random, 0.3f);
 		SCREENS = new Screen[] {
-				new SplashScreen(),
-					new MenuScreen(),
-						new LevelSelectScreen(),
+				new SplashScreen(),//TODO
+					new MenuScreen(),//TODO add settings icon
+						new LevelSelectScreen(ship),
 							new PlayScreen(ship),
-								new GameOverScreen(),
+								new GameOverScreen(),//TODO
 						new FreePlaySetupScreen(),
 							new PlayScreen(ship),
-								new GameOverScreen(),
-						new ShopScreen(),
-						new SettingsScreen()
+								new GameOverScreen(),//TODO
+						new ShopScreen(),//TODO
+						new SettingsScreen()//TODO
 			};
 	}
 	
@@ -53,11 +55,19 @@ public abstract class Screen {
 	
 	public abstract void draw (float dt);
 	
+	public InputProcessor getInputHandler () {
+		return null;
+	}
+	
 	public boolean showAsteroids = false, passInput = false;
 	
 	public static void to (int index) {
 		current = index;
-		Gdx.input.setInputProcessor(SCREENS[current].getStage());//TODO multiplex input for play screens
+		if (now().passInput) {
+			Gdx.input.setInputProcessor(new InputMultiplexer(SCREENS[current].getStage(), now().getInputHandler()));
+		} else {
+			Gdx.input.setInputProcessor(SCREENS[current].getStage());
+		}
 	}
 	
 	public static Screen now () {

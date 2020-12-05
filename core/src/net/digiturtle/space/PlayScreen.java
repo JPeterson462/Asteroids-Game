@@ -2,6 +2,7 @@ package net.digiturtle.space;
 
 import java.util.Random;
 
+import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -17,6 +18,7 @@ public class PlayScreen extends Screen {
 
 	private boolean freePlay;
 	private float time;
+	private int reward, level;
 	
 	private SpaceRenderer spaceRenderer;
 	private ShipRenderer shipRenderer;
@@ -27,6 +29,7 @@ public class PlayScreen extends Screen {
 	private Stage stage;
 	
 	public PlayScreen (Ship ship) {
+		passInput = true;
 		this.ship = ship;
 		stage = new Stage();
 
@@ -50,12 +53,18 @@ public class PlayScreen extends Screen {
 		shipController = new KeyboardShipController();
 		shipController.connect(ship, space);
 	}
+
+	public InputProcessor getInputHandler () {
+		return (InputProcessor) shipController;
+	}
 	
-	public void setup (boolean freePlay, float asteroidDensity, long seed) {
+	public void setup (boolean freePlay, float asteroidDensity, long seed, int reward, int level) {
 		this.freePlay = freePlay;
 		space.generate((int) camera.viewportWidth, (int) camera.viewportHeight * 20, new Random(seed), asteroidDensity);
 		ship.position = new Vector2(space.width / 2, 300);
 		ship.speed = ship.thrusters.speed;
+		this.reward = reward;
+		this.level = level;
 	}
 
 	@Override
@@ -81,12 +90,14 @@ public class PlayScreen extends Screen {
 		if (ship.health <= 0) {
 			// Lose
 			to(freePlay ? FREE_PLAY_GAME_OVER_SCREEN : LEVEL_GAME_OVER_SCREEN);
-			((GameOverScreen) now()).setup(freePlay, 0, false, time);
+			((GameOverScreen) now()).setup(freePlay, 0, freePlay, time);
 		}
-		else if (ship.position.y > space.height) {
+		else if (!freePlay && ship.position.y > space.height) {
 			// Win
 			to(freePlay ? FREE_PLAY_GAME_OVER_SCREEN : LEVEL_GAME_OVER_SCREEN);
-			((GameOverScreen) now()).setup(freePlay, 0, true, time);//TODO reward value
+			((GameOverScreen) now()).setup(freePlay, reward, true, time);
+			ship.coins += reward;
+			ship.levelUnlocked = Math.max(ship.levelUnlocked, level + 1);
 		}
 	}
 

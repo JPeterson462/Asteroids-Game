@@ -69,5 +69,9 @@ public class Ship {
 			ddt = 0;
 		}
 	}
+	
+	// User data
+	public int coins;
+	public int levelUnlocked = 1;
 
 }

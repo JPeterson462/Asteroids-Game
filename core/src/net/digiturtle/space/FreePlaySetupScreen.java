@@ -40,7 +40,7 @@ public class FreePlaySetupScreen extends Screen {
 		start.addListener(new ClickListener () {
 			public void clicked (InputEvent evt, float x, float y) {
 				to(FREE_PLAY_SCREEN);
-				((PlayScreen) now()).setup(true, slider.getValue(), SpaceGame.SEED);
+				((PlayScreen) now()).setup(true, slider.getValue(), SpaceGame.SEED, 0, -1);
 			}
 		});
 		stage.addActor(start);
