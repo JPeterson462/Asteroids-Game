@@ -28,7 +28,7 @@ public class SpaceGame extends ApplicationAdapter {
 	
 	@Override
 	public void create () {
-		ship = new Ship();ship.phasers = Ship.Phasers.Energy;ship.thrusters = Ship.Thrusters.Mega;
+		ship = new Ship();ship.phasers = Ship.Phasers.Basic;ship.thrusters = Ship.Thrusters.Mega;
 		camera = new OrthographicCamera();
 		float widthScale = (828f/2) / (float)Gdx.graphics.getWidth();
 		int viewportHeight = (int) (widthScale * (float)Gdx.graphics.getHeight());

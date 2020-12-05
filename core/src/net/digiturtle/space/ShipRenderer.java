@@ -81,8 +81,25 @@ public class ShipRenderer {
 		return null;
 	}
 	
+	public TextureRegion getPhaserFrame (Ship ship) {
+		int shootSlide = ship.t == 0 ? -1 : (int)(ship.t * 5);
+		if (shootSlide < 0 || shootSlide > 4) {
+			return null;
+		}
+		switch (ship.phasers) {
+		case Basic:
+			return Textures.BASIC_P[shootSlide];
+		case Energy:
+			return Textures.ENERGY_P[shootSlide];
+		case RedMatter:
+			return Textures.RED_MATTER_P[shootSlide];
+		}
+		return null;
+	}
+	
 	public void draw (Batch batch, Ship ship, float x, float y) {
 		TextureRegion fuelFrame = getFuelFrame(ship);
+		TextureRegion phaserFrame = getPhaserFrame(ship);
 		TextureRegion[] sprites = getSprites(ship);
 		TextureRegion damage = getShipDamage(ship);
 		batch.draw(fuelFrame, x - fuelFrame.getRegionWidth()/2, y - sprites[0].getRegionHeight()/2 - 35);
@@ -103,6 +120,13 @@ public class ShipRenderer {
 		batch.draw(sprites[3], 
 				x - sprites[3].getRegionWidth()/2,
 				y - sprites[3].getRegionHeight()/2);
+		
+
+		if (phaserFrame != null) {
+			batch.draw(phaserFrame, 
+				x - sprites[0].getRegionWidth()/2,
+				y);
+		}
 	}
 
 }

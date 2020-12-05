@@ -19,6 +19,8 @@ public class Textures {
 	public static TextureRegion SHIP_DAMAGE1, SHIP_DAMAGE2, SHIP_DAMAGE3, SHIP_DAMAGE4;
 	public static Texture FUEL;
 	public static TextureRegion[] GASOLINE, JET_FUEL, PLASMA;
+	public static Texture PHASERS;
+	public static TextureRegion[] BASIC_P, ENERGY_P, RED_MATTER_P;
 	
 	public static Skin SKIN;
 	
@@ -52,6 +54,15 @@ public class Textures {
 			JET_FUEL[i] = new TextureRegion(FUEL, i * 240, 100, 240, 100);
 			PLASMA[i] = new TextureRegion(FUEL, i * 240, 200, 240, 100);
 		}
+		PHASERS = new Texture("SpacePhasers.png");
+		BASIC_P = new TextureRegion[5];
+		ENERGY_P = new TextureRegion[5];
+		RED_MATTER_P = new TextureRegion[5];
+		for (int i = 0; i < 5; i++) {
+			BASIC_P[i] = new TextureRegion(PHASERS, i * 240, 0, 240, 150);
+			ENERGY_P[i] = new TextureRegion(PHASERS, i * 240, 150, 240, 150);
+			RED_MATTER_P[i] = new TextureRegion(PHASERS, i * 240, 300, 240, 150);
+		}
 	}
 	
 	public static void dispose () {
@@ -70,6 +81,8 @@ public class Textures {
 		RUGGED_SHIELDS.getTexture().dispose();
 		MARTIAN_SHIELDS.getTexture().dispose();
 		ASTEROIDS.dispose();
+		FUEL.dispose();
+		PHASERS.dispose();
 	}
 	
 	public static Texture getColoredDrawable(int width, int height, Color color) {

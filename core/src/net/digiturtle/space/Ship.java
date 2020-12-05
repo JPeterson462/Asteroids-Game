@@ -54,9 +54,20 @@ public class Ship {
 	private Vector2 velocity = new Vector2();
 	public float speed;
 	
+	public float t, ddt;
+	
+	public void shoot () {
+		ddt = 1f/.1f;
+	}
+	
 	public void update (float dt) {
 		velocity.set(0, speed);
 		position.mulAdd(velocity, dt);
+		t += ddt * dt;
+		if (t >= 1) {
+			t = 0;
+			ddt = 0;
+		}
 	}
 
 }

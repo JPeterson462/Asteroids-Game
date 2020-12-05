@@ -15,6 +15,8 @@ public class ShipController {
 	
 	public final void shoot () {
 		System.out.println("Shoot!");
+		if (ship.t < 1 && ship.t > 0) return; // Can't shoot yet
+		ship.shoot();
 		for (int i = space.asteroids.size() - 1; i >= 0; i--) {
 			Asteroid asteroid = space.asteroids.get(i);
 			float dx = asteroid.position.y - ship.position.y;
