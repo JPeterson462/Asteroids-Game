@@ -32,7 +32,7 @@ public class ShipRenderer {
 		case Energy:
 			sprites[2] = Textures.ENERGY_PHASERS;
 			break;
-		case RedMatter:
+		case Red_Matter:
 			sprites[2] = Textures.RED_MATTER_PHASERS;
 			break;
 		}
@@ -91,7 +91,7 @@ public class ShipRenderer {
 			return Textures.BASIC_P[shootSlide];
 		case Energy:
 			return Textures.ENERGY_P[shootSlide];
-		case RedMatter:
+		case Red_Matter:
 			return Textures.RED_MATTER_P[shootSlide];
 		}
 		return null;
