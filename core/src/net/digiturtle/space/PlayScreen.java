@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.ProgressBar;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
@@ -29,6 +30,7 @@ public class PlayScreen extends Screen {
 	private ShipController shipController;
 	private SpriteBatch batch;
 	private ProgressBar healthBar;
+	private Label freePlayTime;
 	
 	private Stage stage;
 	
@@ -59,6 +61,10 @@ public class PlayScreen extends Screen {
 		healthBar.getStyle().knob = new TextureRegionDrawable(new TextureRegion(Textures.getColoredDrawable(0, (int) healthBar.getHeight(), Color.RED)));
 		healthBar.getStyle().knobBefore = new TextureRegionDrawable(new TextureRegion(Textures.getColoredDrawable((int) healthBar.getWidth(), (int) healthBar.getHeight(), Color.RED)));
 		stage.addActor(healthBar);
+		
+		freePlayTime = new Label("", Textures.SKIN);
+		freePlayTime.setPosition(10, height - 60);
+		stage.addActor(freePlayTime);
 		
 		batch = new SpriteBatch();
 		shipRenderer = new ShipRenderer();
@@ -104,6 +110,11 @@ public class PlayScreen extends Screen {
 		space.processCollisionsAndUpdate(ship, 300, 240, dt);
 		healthBar.setValue(ship.health);
 		
+		if (freePlay && ship.position.y > space.height) { 
+			space.generate((int) camera.viewportWidth, (int) camera.viewportHeight * 20, new Random(seed), asteroidDensity);
+			ship.position = new Vector2(space.width / 2, 300);
+		}
+		
 		if (ship.health <= 0) {
 			// Lose
 			to(freePlay ? FREE_PLAY_GAME_OVER_SCREEN : LEVEL_GAME_OVER_SCREEN);
@@ -115,6 +126,12 @@ public class PlayScreen extends Screen {
 			((GameOverScreen) now()).setup(freePlay, reward, true, time, asteroidDensity, seed, level);
 			ship.coins += reward;
 			ship.levelUnlocked = Math.max(ship.levelUnlocked, level + 1);
+		}
+		if (freePlay) {
+			int t = (int)time;
+			int minutes = (t - (t % 60)) / 60;
+			int seconds = t % 60;
+			freePlayTime.setText(minutes + " minutes, " + seconds + " seconds");
 		}
 	}
 
