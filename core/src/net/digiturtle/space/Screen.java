@@ -46,7 +46,7 @@ public abstract class Screen {
 						new FreePlaySetupScreen(),
 							new PlayScreen(ship),
 								new GameOverScreen(),//TODO
-						new ShopScreen(),//TODO
+						new ShopScreen(ship),//TODO
 						new SettingsScreen()//TODO
 			};
 	}

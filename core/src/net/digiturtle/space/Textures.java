@@ -21,10 +21,24 @@ public class Textures {
 	public static TextureRegion[] GASOLINE, JET_FUEL, PLASMA;
 	public static Texture PHASERS;
 	public static TextureRegion[] BASIC_P, ENERGY_P, RED_MATTER_P;
+	public static Texture ICONS;
+	public static TextureRegion[] ICON_SET;
 	
 	public static Skin SKIN;
 	
 	public static void create () {
+		ICONS = new Texture("ShipParts.png");
+		ICON_SET = new TextureRegion[] {
+			new TextureRegion(ICONS, 0, 0, 80, 80),
+			new TextureRegion(ICONS, 80, 0, 80, 80),
+			new TextureRegion(ICONS, 160, 0, 80, 80),
+			new TextureRegion(ICONS, 0, 80, 80, 80),
+			new TextureRegion(ICONS, 80, 80, 80, 80),
+			new TextureRegion(ICONS, 160, 80, 80, 80),
+			new TextureRegion(ICONS, 0, 160, 80, 80),
+			new TextureRegion(ICONS, 80, 160, 80, 80),
+			new TextureRegion(ICONS, 160, 160, 80, 80),
+		};
 		SHIP_DAMAGE1 = new TextureRegion(new Texture("ShipDamage1.png"));
 		SHIP_DAMAGE2 = new TextureRegion(new Texture("ShipDamage2.png"));
 		SHIP_DAMAGE3 = new TextureRegion(new Texture("ShipDamage3.png"));
@@ -83,6 +97,7 @@ public class Textures {
 		ASTEROIDS.dispose();
 		FUEL.dispose();
 		PHASERS.dispose();
+		ICONS.dispose();
 	}
 	
 	public static Texture getColoredDrawable(int width, int height, Color color) {
