@@ -34,7 +34,7 @@ public class SpaceGame extends ApplicationAdapter {
 		ship.unlock(Ship.Thrusters.Basic);
 		ship.unlock(Ship.Phasers.Basic);
 		ship.unlock(Ship.Shields.Basic);
-		ship.coins = 10_000;//TEST:
+		ship.coins = 10_000;//TEST:FIXME
 		camera = new OrthographicCamera();
 		float widthScale = (828f/2) / (float)Gdx.graphics.getWidth();
 		int viewportHeight = (int) (widthScale * (float)Gdx.graphics.getHeight());

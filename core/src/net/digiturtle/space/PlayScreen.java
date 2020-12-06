@@ -7,8 +7,11 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.ProgressBar;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
 public class PlayScreen extends Screen {
@@ -17,8 +20,9 @@ public class PlayScreen extends Screen {
 	private Ship ship;
 
 	private boolean freePlay;
-	private float time;
+	private float time, asteroidDensity;
 	private int reward, level;
+	private long seed;
 	
 	private SpaceRenderer spaceRenderer;
 	private ShipRenderer shipRenderer;
@@ -32,6 +36,16 @@ public class PlayScreen extends Screen {
 		passInput = true;
 		this.ship = ship;
 		stage = new Stage();
+		
+		int width = (int)camera.viewportWidth, height = (int)camera.viewportHeight;
+		TextButton quit = new TextButton("Quit", Textures.SKIN);
+		quit.setBounds(width * 3 / 4, height - 70, width / 4 - 10, 30);
+		quit.addListener(new ClickListener() {
+			public void clicked (InputEvent evt, float x, float y) {
+				to(freePlay ? FREE_PLAY_SETUP_SCREEN : LEVEL_SCREEN);
+			}
+		});
+		stage.addActor(quit);
 
 		space = new Space(asteroid -> {
 			ship.health -= 10 * asteroid.level * ship.shields.damageFactor;
@@ -65,6 +79,9 @@ public class PlayScreen extends Screen {
 		ship.speed = ship.thrusters.speed;
 		this.reward = reward;
 		this.level = level;
+		this.asteroidDensity = asteroidDensity;
+		this.seed = seed;
+		ship.health = ship.maxHealth;
 	}
 
 	@Override
@@ -90,12 +107,12 @@ public class PlayScreen extends Screen {
 		if (ship.health <= 0) {
 			// Lose
 			to(freePlay ? FREE_PLAY_GAME_OVER_SCREEN : LEVEL_GAME_OVER_SCREEN);
-			((GameOverScreen) now()).setup(freePlay, 0, freePlay, time);
+			((GameOverScreen) now()).setup(freePlay, 0, freePlay, time, asteroidDensity, seed, level);
 		}
 		else if (!freePlay && ship.position.y > space.height) {
 			// Win
 			to(freePlay ? FREE_PLAY_GAME_OVER_SCREEN : LEVEL_GAME_OVER_SCREEN);
-			((GameOverScreen) now()).setup(freePlay, reward, true, time);
+			((GameOverScreen) now()).setup(freePlay, reward, true, time, asteroidDensity, seed, level);
 			ship.coins += reward;
 			ship.levelUnlocked = Math.max(ship.levelUnlocked, level + 1);
 		}

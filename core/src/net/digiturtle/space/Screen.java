@@ -42,11 +42,11 @@ public abstract class Screen {
 					new MenuScreen(),//TODO add settings icon
 						new LevelSelectScreen(ship),
 							new PlayScreen(ship),
-								new GameOverScreen(),//TODO
+								new GameOverScreen(ship),//TODO
 						new FreePlaySetupScreen(),
 							new PlayScreen(ship),
-								new GameOverScreen(),//TODO
-						new ShopScreen(ship),//TODO
+								new GameOverScreen(ship),//TODO
+						new ShopScreen(ship),
 						new SettingsScreen()//TODO
 			};
 	}
