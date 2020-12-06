@@ -38,7 +38,6 @@ public class LevelSelectScreen extends Screen {
 				select.setBounds(c * (size + space) + space, r * (size + space) + space + (height - 5 * (size + space)) / 2, size, size);
 				select.addListener(new ClickListener () {
 					public void clicked (InputEvent evt, float x, float y) {
-						
 						to(LEVEL_PLAY_SCREEN);
 						((PlayScreen) now()).setup(false, .1f + (level * (.3f / 25)), SpaceGame.SEED, level * 100, level);
 					}

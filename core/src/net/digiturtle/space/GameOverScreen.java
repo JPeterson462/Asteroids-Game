@@ -21,10 +21,6 @@ public class GameOverScreen extends Screen {
 		
 		int width = (int) camera.viewportWidth, height = (int) camera.viewportHeight;
 		
-		if (!freePlayMode && successful) {
-			ship.coins += reward;
-		}
-		
 		Label status = new Label("", Textures.SKIN);
 		status.setPosition(width / 4,  height * 3 / 4);
 		if (!freePlayMode) {
