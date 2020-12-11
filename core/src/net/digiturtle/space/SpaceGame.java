@@ -5,6 +5,7 @@ import java.util.Random;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -28,13 +29,16 @@ public class SpaceGame extends ApplicationAdapter {
 	
 	public static final long SEED = 202011112020L;
 	
+	private Preferences prefs;
+	
 	@Override
 	public void create () {
+		prefs = Gdx.app.getPreferences("AsteroidBlitz Data");
 		ship = new Ship();
 		ship.unlock(Ship.Thrusters.Basic);
 		ship.unlock(Ship.Phasers.Basic);
 		ship.unlock(Ship.Shields.Basic);
-		ship.coins = 10_000;//TEST:FIXME
+		ship.load(prefs.getString("data"));
 		camera = new OrthographicCamera();
 		float widthScale = (828f/2) / (float)Gdx.graphics.getWidth();
 		int viewportHeight = (int) (widthScale * (float)Gdx.graphics.getHeight());
@@ -93,5 +97,7 @@ public class SpaceGame extends ApplicationAdapter {
 		spaceRenderer.dispose();
 		batch.dispose();
 		Textures.dispose();
+		prefs.putString("data", ship.save());
+		prefs.flush();
 	}
 }

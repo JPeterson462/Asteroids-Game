@@ -1,6 +1,7 @@
 package net.digiturtle.space;
 
 import java.util.HashMap;
+import java.util.stream.Collectors;
 
 import com.badlogic.gdx.math.Vector2;
 
@@ -91,5 +92,45 @@ public class Ship {
 	public int coins;
 	public int levelUnlocked = 1;
 	public boolean audioOn = false;
+	
+	public String save () {
+		return coins + ":"
+				+ levelUnlocked + ":"
+				+ audioOn + ":"
+				+ thrusters.name() + ":"
+				+ shields.name() + ":"
+				+ phasers.name() + ":"
+				+ String.join(",", unlockedItems.entrySet().stream().filter(item -> item.getValue())
+													.map(item -> item.getKey().getClass().getSimpleName() + "^" + item.getKey().toString())
+													.collect(Collectors.toList()));
+	}
+	
+	public void load (String data) {
+		if (data == null || data.length() == 0) {
+			return; // No data, just defaults
+		}
+		String[] attributes = data.split(":");
+		coins = Integer.parseInt(attributes[0]);
+		levelUnlocked = Integer.parseInt(attributes[1]);
+		audioOn = Boolean.parseBoolean(attributes[2]);
+		thrusters = Thrusters.valueOf(attributes[3]);
+		shields = Shields.valueOf(attributes[4]);
+		phasers = Phasers.valueOf(attributes[5]);
+		String[] unlocked = attributes[6].split(",");
+		for (String item : unlocked) {
+			String[] parts = item.split("^");
+			switch (parts[0]) {
+			case "T":
+				unlockedItems.put(Thrusters.valueOf(parts[1]), true);
+				break;
+			case "S":
+				unlockedItems.put(Shields.valueOf(parts[1]), true);
+				break;
+			case "P":
+				unlockedItems.put(Phasers.valueOf(parts[1]), true);
+				break;
+			}
+		}
+	}
 
 }

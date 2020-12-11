@@ -37,7 +37,7 @@ public abstract class Screen {
 		asteroid = new Space((a) -> {});
 		asteroid.generate((int) camera.viewportWidth, (int) camera.viewportHeight * 5, random, 0.3f);
 		SCREENS = new Screen[] {
-				new SplashScreen(),//TODO
+				new SplashScreen(),
 					new MenuScreen(ship),
 						new LevelSelectScreen(ship),
 							new PlayScreen(ship),
