@@ -23,7 +23,7 @@ public class Textures {
 	public static TextureRegion[] BASIC_P, ENERGY_P, RED_MATTER_P;
 	public static Texture ICONS;
 	public static TextureRegion[] ICON_SET;
-	public static Texture LOGO;
+	public static Texture LOGO, DIGITURTLE;
 	public static Texture AUDIO_ICON;
 	public static TextureRegion[] AUDIO_ICONS;
 	
@@ -36,6 +36,7 @@ public class Textures {
 			new TextureRegion(AUDIO_ICON, 0, 0, 16, 16),//on
 		};
 		LOGO = new Texture("AsteroidBlitz.png");
+		DIGITURTLE = new Texture("DigiTurtleLowResWithTitle_BG.png");
 		ICONS = new Texture("ShipParts.png");
 		ICON_SET = new TextureRegion[] {
 			new TextureRegion(ICONS, 0, 0, 80, 80),
@@ -109,6 +110,7 @@ public class Textures {
 		PHASERS.dispose();
 		ICONS.dispose();
 		AUDIO_ICON.dispose();
+		DIGITURTLE.dispose();
 	}
 	
 	public static Texture getColoredDrawable(int width, int height, Color color) {

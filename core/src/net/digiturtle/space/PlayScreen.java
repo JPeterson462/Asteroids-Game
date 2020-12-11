@@ -35,6 +35,7 @@ public class PlayScreen extends Screen {
 	private Stage stage;
 	
 	public PlayScreen (Ship ship) {
+		showSpace = false;
 		passInput = true;
 		this.ship = ship;
 		stage = new Stage();

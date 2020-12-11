@@ -57,7 +57,7 @@ public abstract class Screen {
 		return null;
 	}
 	
-	public boolean showAsteroids = false, passInput = false;
+	public boolean showAsteroids = false, passInput = false, showSpace = true;
 	
 	public static void to (int index) {
 		current = index;
@@ -80,7 +80,9 @@ public abstract class Screen {
 		camera.position.set(camera.viewportWidth/2, t + camera.viewportHeight/2, 0);
 		camera.update();
 		Screen screen = SCREENS[current];
-		if (!(screen instanceof PlayScreen)) spaceRenderer.draw(screen.showAsteroids ? asteroid : noAsteroid, camera);
+		if (screen.showSpace) {
+			spaceRenderer.draw(screen.showAsteroids ? asteroid : noAsteroid, camera);
+		}
 		screen.draw(dt);
 		screen.getStage().act(dt);
 		screen.getStage().draw();
