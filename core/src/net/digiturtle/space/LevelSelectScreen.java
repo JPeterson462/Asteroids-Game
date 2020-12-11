@@ -34,7 +34,7 @@ public class LevelSelectScreen extends Screen {
 				int space = 20;
 				int size = (width - 6*space) / 5;
 				int level = (5 - r - 1) * 5 + c + 1;
-				TextButton select = new TextButton(Integer.toString(level), Textures.SKIN);
+				TextButton select = new TextButton(Integer.toString(level), Textures.SKIN, "level");
 				select.setBounds(c * (size + space) + space, r * (size + space) + space + (height - 5 * (size + space)) / 2, size, size);
 				select.addListener(new ClickListener () {
 					public void clicked (InputEvent evt, float x, float y) {

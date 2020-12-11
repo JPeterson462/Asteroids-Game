@@ -129,8 +129,8 @@ public class ShopScreen extends Screen {
 				boolean active = ship.phasers == phasers;
 				boolean enabledButton = affordable && !active;
 				shopItems[i].action.setText(unlocked ? "Select" : "Buy");
-				shopItems[i].action.setDisabled(!enabledButton);
-				shopItems[i].action.setTouchable(enabledButton ? Touchable.enabled : Touchable.disabled);
+				shopItems[i].action.setDisabled(unlocked ? active : !enabledButton);
+				shopItems[i].action.setTouchable(!shopItems[i].action.isDisabled() ? Touchable.enabled : Touchable.disabled);
 				shopItems[i].cost.setText(phasers.cost + " Coins");
 				shopItems[i].costAsInt = phasers.cost;
 				shopItems[i].item = phasers;
@@ -146,8 +146,8 @@ public class ShopScreen extends Screen {
 				boolean active = ship.shields == shields;
 				boolean enabledButton = affordable && !active;
 				shopItems[i].action.setText(unlocked ? "Select" : "Buy");
-				shopItems[i].action.setDisabled(!enabledButton);
-				shopItems[i].action.setTouchable(enabledButton ? Touchable.enabled : Touchable.disabled);
+				shopItems[i].action.setDisabled(unlocked ? active : !enabledButton);
+				shopItems[i].action.setTouchable(!shopItems[i].action.isDisabled() ? Touchable.enabled : Touchable.disabled);
 				shopItems[i].cost.setText(shields.cost + " Coins");
 				shopItems[i].costAsInt = shields.cost;
 				shopItems[i].item = shields;
@@ -163,8 +163,8 @@ public class ShopScreen extends Screen {
 				boolean active = ship.thrusters == thrusters;
 				boolean enabledButton = affordable && !active;
 				shopItems[i].action.setText(unlocked ? "Select" : "Buy");
-				shopItems[i].action.setDisabled(!enabledButton);
-				shopItems[i].action.setTouchable(enabledButton ? Touchable.enabled : Touchable.disabled);
+				shopItems[i].action.setDisabled(unlocked ? active : !enabledButton);
+				shopItems[i].action.setTouchable(!shopItems[i].action.isDisabled() ? Touchable.enabled : Touchable.disabled);
 				shopItems[i].cost.setText(thrusters.cost + " Coins");
 				shopItems[i].costAsInt = thrusters.cost;
 				shopItems[i].item = thrusters;
