@@ -23,10 +23,12 @@ public class Textures {
 	public static TextureRegion[] BASIC_P, ENERGY_P, RED_MATTER_P;
 	public static Texture ICONS;
 	public static TextureRegion[] ICON_SET;
+	public static Texture LOGO;
 	
 	public static Skin SKIN;
 	
 	public static void create () {
+		LOGO = new Texture("AsteroidBlitz.png");
 		ICONS = new Texture("ShipParts.png");
 		ICON_SET = new TextureRegion[] {
 			new TextureRegion(ICONS, 0, 0, 80, 80),
@@ -80,6 +82,7 @@ public class Textures {
 	}
 	
 	public static void dispose () {
+		LOGO.dispose();
 		SHIP_DAMAGE1.getTexture().dispose();
 		SHIP_DAMAGE2.getTexture().dispose();
 		SHIP_DAMAGE3.getTexture().dispose();
