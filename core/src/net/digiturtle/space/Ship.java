@@ -56,14 +56,14 @@ public class Ship {
 	
 	private HashMap<Object, Boolean> unlockedItems = new HashMap<>();
 	
-	public final int maxHealth = 100;
-	public int health = maxHealth;
+	public transient final int maxHealth = 100;
+	public transient int health = maxHealth;
 	
-	public Vector2 position;
-	private Vector2 velocity = new Vector2();
-	public float speed;
+	public transient Vector2 position;
+	private transient Vector2 velocity = new Vector2();
+	public transient float speed;
 	
-	public float t, ddt;
+	public transient float t, ddt;
 	
 	public boolean isUnlocked (Object item) {
 		return unlockedItems.getOrDefault(item, false);
@@ -90,5 +90,6 @@ public class Ship {
 	// User data
 	public int coins;
 	public int levelUnlocked = 1;
+	public boolean audioOn = false;
 
 }

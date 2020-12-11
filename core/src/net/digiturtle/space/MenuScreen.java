@@ -4,15 +4,19 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.badlogic.gdx.utils.Scaling;
 
 public class MenuScreen extends Screen {
 	
 	private Stage stage;
+	private Ship ship;
 	
-	public MenuScreen () {
+	public MenuScreen (Ship ship) {
+		this.ship = ship;
 		int width = (int) camera.viewportWidth, height = (int) camera.viewportHeight;
 		stage = new Stage();
 		
@@ -49,11 +53,13 @@ public class MenuScreen extends Screen {
 		});
 		stage.addActor(shop);
 		
-		Button settings = new Button(Textures.SKIN);
-		settings.setBounds(width - 50 - 10, 10, 50, 50);
+		ImageButton settings = new ImageButton(new TextureRegionDrawable(Textures.AUDIO_ICONS[ship.audioOn ? 1 : 0]));
+		settings.setBounds(width - 50 - 20, 10, 50, 50);
+		settings.getImage().setScale(2);
 		settings.addListener(new ClickListener () {
 			public void clicked (InputEvent evt, float x, float y) {
-				to(SETTINGS_SCREEN);
+				ship.audioOn ^= true;
+				settings.getStyle().imageUp = new TextureRegionDrawable(Textures.AUDIO_ICONS[ship.audioOn ? 1 : 0]);
 			}
 		});
 		stage.addActor(settings);

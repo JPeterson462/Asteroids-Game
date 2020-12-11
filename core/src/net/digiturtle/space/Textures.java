@@ -24,10 +24,17 @@ public class Textures {
 	public static Texture ICONS;
 	public static TextureRegion[] ICON_SET;
 	public static Texture LOGO;
+	public static Texture AUDIO_ICON;
+	public static TextureRegion[] AUDIO_ICONS;
 	
 	public static Skin SKIN;
 	
 	public static void create () {
+		AUDIO_ICON = new Texture("AudioOnOff.png");
+		AUDIO_ICONS = new TextureRegion[] {
+			new TextureRegion(AUDIO_ICON, 16, 0, 16, 16),//off
+			new TextureRegion(AUDIO_ICON, 0, 0, 16, 16),//on
+		};
 		LOGO = new Texture("AsteroidBlitz.png");
 		ICONS = new Texture("ShipParts.png");
 		ICON_SET = new TextureRegion[] {
@@ -101,6 +108,7 @@ public class Textures {
 		FUEL.dispose();
 		PHASERS.dispose();
 		ICONS.dispose();
+		AUDIO_ICON.dispose();
 	}
 	
 	public static Texture getColoredDrawable(int width, int height, Color color) {

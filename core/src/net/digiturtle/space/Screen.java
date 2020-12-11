@@ -19,8 +19,7 @@ public abstract class Screen {
 				FREE_PLAY_SETUP_SCREEN = 5,
 					FREE_PLAY_SCREEN = 6,
 						FREE_PLAY_GAME_OVER_SCREEN = 7,
-				SHOP_SCREEN = 8,
-				SETTINGS_SCREEN = 9
+				SHOP_SCREEN = 8
 		;
 	
 	public static Screen[] SCREENS;
@@ -39,15 +38,14 @@ public abstract class Screen {
 		asteroid.generate((int) camera.viewportWidth, (int) camera.viewportHeight * 5, random, 0.3f);
 		SCREENS = new Screen[] {
 				new SplashScreen(),//TODO
-					new MenuScreen(),//TODO add settings icon
+					new MenuScreen(ship),
 						new LevelSelectScreen(ship),
 							new PlayScreen(ship),
-								new GameOverScreen(ship),//TODO
+								new GameOverScreen(ship),
 						new FreePlaySetupScreen(),
 							new PlayScreen(ship),
-								new GameOverScreen(ship),//TODO
-						new ShopScreen(ship),
-						new SettingsScreen()//TODO
+								new GameOverScreen(ship),
+						new ShopScreen(ship)
 			};
 	}
 	
