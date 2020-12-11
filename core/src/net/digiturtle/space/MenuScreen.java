@@ -58,6 +58,12 @@ public class MenuScreen extends Screen {
 			public void clicked (InputEvent evt, float x, float y) {
 				ship.audioOn ^= true;
 				settings.getStyle().imageUp = new TextureRegionDrawable(Textures.AUDIO_ICONS[ship.audioOn ? 1 : 0]);
+				if (ship.audioOn) {
+					Sounds.ALIEN_DREAM.play();
+				} else {
+					Sounds.ALIEN_DREAM.stop();
+				}
+				
 			}
 		});
 		stage.addActor(settings);

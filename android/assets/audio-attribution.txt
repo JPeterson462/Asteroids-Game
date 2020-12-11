@@ -1,0 +1,22 @@
+The following audio assets are used in Asteroid Blitz:
+
+523205__matrixxx__retro-laser-gun-shot.wav
+Authored by MATRIXXX_ on FreeSound
+https://freesound.org/people/MATRIXXX_/sounds/523205/
+
+158729__erdie__engine03-loop.wav
+Authored by Erdie on FreeSound
+https://freesound.org/people/Erdie/sounds/158729/
+
+396239__romariogrande__alien-dream.wav
+Authored by Romariogrande on FreeSound
+https://freesound.org/people/Romariogrande/sounds/396239/
+
+hjm-big_explosion_3.wav
+Authored by Varkalandar on OpenGameArt
+Hansjörg Malthaner: http://opengameart.org/users/varkalandar 
+https://opengameart.org/content/big-low-frequency-explosion-boom
+
+explosion_somewhere_far.mp3
+Authored by pauliuw on OpenGameArt
+https://opengameart.org/content/explosion-somewhere-far

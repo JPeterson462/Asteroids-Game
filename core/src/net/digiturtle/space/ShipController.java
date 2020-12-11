@@ -25,6 +25,9 @@ public class ShipController {
 				int level = Math.max(0, asteroid.level - (take2 ? 2 : 1));
 				if (level == 0) {
 					space.asteroids.remove(i);
+					if (ship.audioOn) {
+						Sounds.ASTEROID_DESTROYED.play();
+					}
 				} else {
 					asteroid.level = level;
 				}

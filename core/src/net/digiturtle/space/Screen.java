@@ -28,8 +28,10 @@ public abstract class Screen {
 	public static OrthographicCamera camera;
 	private static float t;
 	private static Random random;
+	private static Ship _ship;
 	
 	public static void create (OrthographicCamera camera, Ship ship) {
+		Screen._ship = ship;
 		random = new Random();
 		Screen.camera = camera;
 		noAsteroid = new Space((a) -> {});
@@ -60,6 +62,20 @@ public abstract class Screen {
 	public boolean showAsteroids = false, passInput = false, showSpace = true;
 	
 	public static void to (int index) {
+		if (_ship.audioOn) {
+			if (index == LEVEL_PLAY_SCREEN || index == FREE_PLAY_SCREEN) {
+				Sounds.ALIEN_DREAM.stop();
+				Sounds.ENGINE.play();
+			} else {
+				if (Sounds.ENGINE.isPlaying()) {
+					Sounds.ENGINE.stop();
+					Sounds.ALIEN_DREAM.play();
+				}
+			}
+			if (index == MENU_SCREEN) {
+				Sounds.ALIEN_DREAM.play();
+			}
+		}
 		current = index;
 		if (now().passInput) {
 			Gdx.input.setInputProcessor(new InputMultiplexer(SCREENS[current].getStage(), now().getInputHandler()));

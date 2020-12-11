@@ -75,6 +75,9 @@ public class Ship {
 	}
 	
 	public void shoot () {
+		if (audioOn) {
+			Sounds.LASER.play();
+		}
 		ddt = 1f/.1f;
 	}
 	

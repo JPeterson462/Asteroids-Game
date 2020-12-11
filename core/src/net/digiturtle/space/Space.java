@@ -42,6 +42,9 @@ public class Space {
 			float dy = Math.abs(asteroid.position.y - ship.position.y);
 			if (dy < shipY) {
 				if (!asteroid.collided) {
+					if (ship.audioOn) {
+						Sounds.SHIP_DAMAGE.play();
+					}
 					collider.accept(asteroid);
 				}
 				asteroid.collided = true;

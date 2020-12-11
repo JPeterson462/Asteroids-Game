@@ -33,6 +33,7 @@ public class SpaceGame extends ApplicationAdapter {
 	
 	@Override
 	public void create () {
+		Sounds.create();
 		prefs = Gdx.app.getPreferences("AsteroidBlitz Data");
 		ship = new Ship();
 		ship.unlock(Ship.Thrusters.Basic);
@@ -97,6 +98,7 @@ public class SpaceGame extends ApplicationAdapter {
 		spaceRenderer.dispose();
 		batch.dispose();
 		Textures.dispose();
+		Sounds.dispose();
 		prefs.putString("data", ship.save());
 		prefs.flush();
 	}
