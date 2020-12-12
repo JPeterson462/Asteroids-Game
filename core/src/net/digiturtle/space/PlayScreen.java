@@ -14,6 +14,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.ProgressBar;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.badlogic.gdx.utils.viewport.StretchViewport;
 
 public class PlayScreen extends Screen {
 	
@@ -38,7 +39,7 @@ public class PlayScreen extends Screen {
 		showSpace = false;
 		passInput = true;
 		this.ship = ship;
-		stage = new Stage();
+		stage = new Stage(new StretchViewport(camera.viewportWidth, camera.viewportHeight));
 		
 		int width = (int)camera.viewportWidth, height = (int)camera.viewportHeight;
 		TextButton quit = new TextButton("Quit", Textures.SKIN);

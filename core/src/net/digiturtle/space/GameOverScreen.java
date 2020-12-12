@@ -5,6 +5,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.utils.viewport.StretchViewport;
 
 public class GameOverScreen extends Screen {
 	
@@ -12,7 +13,7 @@ public class GameOverScreen extends Screen {
 	private Stage stage;
 	
 	public GameOverScreen (Ship ship) {
-		stage = new Stage();
+		stage = new Stage(new StretchViewport(camera.viewportWidth, camera.viewportHeight));
 		this.ship = ship;
 	}
 	

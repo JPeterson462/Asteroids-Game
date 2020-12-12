@@ -9,6 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Align;
+import com.badlogic.gdx.utils.viewport.StretchViewport;
 
 public class ShopScreen extends Screen {
 
@@ -35,7 +36,7 @@ public class ShopScreen extends Screen {
 	public ShopScreen (Ship ship) {
 		this.ship = ship;
 		int width = (int) camera.viewportWidth, height = (int) camera.viewportHeight;
-		stage = new Stage();
+		stage = new Stage(new StretchViewport(camera.viewportWidth, camera.viewportHeight));
 		
 		shopItems = new ShopItem[3];
 		for (int i = 0; i < 3; i++) {

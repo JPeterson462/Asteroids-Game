@@ -91,6 +91,9 @@ public class SpaceGame extends ApplicationAdapter {
 		space.processCollisionsAndUpdate(ship, 300, 240, dt);
 		healthBar.setValue(ship.health);	*/
 		Screen.render(spaceRenderer, dt);
+
+		prefs.putString("data", ship.save());
+		prefs.flush();
 	}
 	
 	@Override
@@ -99,7 +102,5 @@ public class SpaceGame extends ApplicationAdapter {
 		batch.dispose();
 		Textures.dispose();
 		Sounds.dispose();
-		prefs.putString("data", ship.save());
-		prefs.flush();
 	}
 }

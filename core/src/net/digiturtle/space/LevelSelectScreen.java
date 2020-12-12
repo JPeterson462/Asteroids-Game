@@ -6,6 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.utils.viewport.StretchViewport;
 
 public class LevelSelectScreen extends Screen {
 	
@@ -16,7 +17,7 @@ public class LevelSelectScreen extends Screen {
 	
 	public LevelSelectScreen (Ship ship) {
 		int width = (int) camera.viewportWidth, height = (int) camera.viewportHeight;
-		stage = new Stage();
+		stage = new Stage(new StretchViewport(camera.viewportWidth, camera.viewportHeight));
 		this.ship = ship;
 		
 		TextButton back = new TextButton("Back", Textures.SKIN);

@@ -6,6 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Slider;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.utils.viewport.StretchViewport;
 
 public class FreePlaySetupScreen extends Screen {
 
@@ -15,7 +16,7 @@ public class FreePlaySetupScreen extends Screen {
 	
 	public FreePlaySetupScreen () {
 		int width = (int) camera.viewportWidth, height = (int) camera.viewportHeight;
-		stage = new Stage();
+		stage = new Stage(new StretchViewport(camera.viewportWidth, camera.viewportHeight));
 		
 		TextButton back = new TextButton("Back", Textures.SKIN);
 		back.setBounds(10, height - 10 - 50, width / 3, 50);

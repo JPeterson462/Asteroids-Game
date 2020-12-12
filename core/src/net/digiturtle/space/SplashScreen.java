@@ -2,6 +2,7 @@ package net.digiturtle.space;
 
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.utils.viewport.StretchViewport;
 
 public class SplashScreen extends Screen {
 	
@@ -10,7 +11,7 @@ public class SplashScreen extends Screen {
 	
 	public SplashScreen () {
 		showSpace = false;
-		stage = new Stage();
+		stage = new Stage(new StretchViewport(camera.viewportWidth, camera.viewportHeight));
 		Image image = new Image(Textures.DIGITURTLE);
 		int scale = (int) (camera.viewportWidth / Textures.DIGITURTLE.getWidth());
 		int width = (int) camera.viewportWidth, height = (int) camera.viewportHeight;

@@ -7,6 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.badlogic.gdx.utils.viewport.StretchViewport;
 
 public class MenuScreen extends Screen {
 	
@@ -16,7 +17,7 @@ public class MenuScreen extends Screen {
 	public MenuScreen (Ship ship) {
 		this.ship = ship;
 		int width = (int) camera.viewportWidth, height = (int) camera.viewportHeight;
-		stage = new Stage();
+		stage = new Stage(new StretchViewport(camera.viewportWidth, camera.viewportHeight));
 		
 		Image image = new Image();
 		image.setDrawable(new TextureRegionDrawable(Textures.LOGO));
