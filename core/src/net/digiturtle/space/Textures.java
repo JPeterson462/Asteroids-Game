@@ -65,7 +65,7 @@ public class Textures {
 		MARTIAN_SHIELDS = new TextureRegion(new Texture("MartianShields.png"));
 		ASTEROIDS = new Texture("Asteroids.png");
 		ASTEROID1 = new TextureRegion(ASTEROIDS, 128+96+64, 0, 32,32);
-		ASTEROID2 = new TextureRegion(ASTEROIDS, 128+96, 0, 64,46);
+		ASTEROID2 = new TextureRegion(ASTEROIDS, 128+96, 0, 64,64);
 		ASTEROID3 = new TextureRegion(ASTEROIDS, 128, 0, 96,96);
 		ASTEROID4 = new TextureRegion(ASTEROIDS, 0, 0, 128,128);
 		SKIN = new Skin(Gdx.files.internal("uiskin.json"));
